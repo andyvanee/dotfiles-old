@@ -25,6 +25,10 @@
   '(progn
      (color-theme-initialize)))
 
+;; Copy kill ring to mac clipboard
+(load-file (concat dotfiles-dir "vendor/pbcopy.el"))
+(turn-on-pbcopy)
+
 (load-file (concat dotfiles-dir "color-theme-andy.el"))
 (color-theme-andy)
 
