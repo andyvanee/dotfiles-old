@@ -5,8 +5,10 @@
 ;; Don't clutter with #files either
 (setq auto-save-file-name-transforms `((".*" ,(expand-file-name (concat dotfiles-dir "backups")))))
 
-;; Syntax modes
+;; Use persistent scratch file
+(load-file (concat dotfiles-dir "persistent-scratch.el"))
 
+;; Syntax modes
 (add-to-list 'load-path (concat dotfiles-dir "vendor/coffee-mode"))
 (require 'coffee-mode)
 
@@ -43,39 +45,6 @@
   (global-set-key [mouse-5] '(lambda ()
                                (interactive)
                                (scroll-up 1))))
-
-
-;; Persistant scratch buffer
-
-(defvar persistent-scratch-filename
-  (concat dotfiles-dir "emacs-persistent-scratch"))
-
-(defvar persistent-scratch-backup-directory
-  (concat dotfiles-dir "emacs-persistent-scratch-backups/"))
-
-(defun make-persistent-scratch-backup-name ()
-  (concat
-   persistent-scratch-backup-directory
-   (replace-regexp-in-string
-    (regexp-quote " ") "-" (current-time-string))))
-
-(defun save-persistent-scratch ()
-  (with-current-buffer (get-buffer "*scratch*")
-    (if (file-exists-p persistent-scratch-filename)
-        (copy-file persistent-scratch-filename
-                   (make-persistent-scratch-backup-name)))
-    (write-region (point-min) (point-max)
-                  persistent-scratch-filename)))
-
-(defun load-persistent-scratch ()
-  (if (file-exists-p persistent-scratch-filename)
-      (with-current-buffer (get-buffer "*scratch*")
-        (delete-region (point-min) (point-max))
-        (shell-command (format "cat %s" persistent-scratch-filename) (current-buffer)))))
-
-(load-persistent-scratch)
-
-(push #'save-persistent-scratch kill-emacs-hook)
 
 ;; enable mouse reporting for terminal emulators
 (unless window-system
