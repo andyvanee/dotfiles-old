@@ -5,7 +5,7 @@ export HISTSIZE=5000
 export HISTIGNORE="&:ls:ll:la:exit"
 
 # grep recursively for the term in the current directory 
-gp() {
+preg() {
   grep -Rn $1 .
 }
 
@@ -46,6 +46,11 @@ alias l='ls -G'
 
 alias em='emacs'
 alias be='bundle exec'
+
+alias gpull='git pull'
+alias gpm='git push -u origin master'
+alias gc='git commit -a'
+alias gstat='git status'
 
 alias mysql=/usr/local/mysql/bin/mysql
 alias mysqladmin=/usr/local/mysql/bin/mysqladmin
