@@ -4,9 +4,11 @@
 export HISTSIZE=5000
 export HISTIGNORE="&:ls:ll:la:exit"
 
-# grep recursively for the term in the current directory 
+# Functions
+
+# grep recursively for the term in the current directory
 preg() {
-  grep -Rn $1 .
+    grep -Rn $1 .
 }
 
 # cd + short ls
@@ -15,22 +17,22 @@ cl() {
     ls -G
 }
 
-# Move stuff to the trash
-function dump() {
-  local path
-  for path in "$@"; do
-    # ignore any arguments
-    if [[ "$path" = -* ]]; then :
-    else
-      local dst=${path##*/}
-      # append the time if necessary
-      while [ -e ~/.Trash/"$dst" ]; do
-        dst="$dst "$(date +%H-%M-%S)
-      done
-      mv "$path" ~/.Trash/"$dst"
-    fi
-  done
+# Create a data URL from an image (works for other file types too, if you tweak the Content-Type afterwards)
+dataurl() {
+    echo "data:image/${1##*.};base64,$(openssl base64 -in "$1")" | tr -d '\n'
 }
+
+# Start an HTTP server from a directory, optionally specifying the port
+function server() {
+    local port="${1:-8000}"
+    open "http://localhost:${port}/"
+    python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
+}
+
+# Input
+
+# Immediately add a trailing slash when autocompleting symlinks to directories
+set mark-symlinked-directories on
 
 # cwd+newline prompt
 PS1='\n\e[1;31m\w\e[m\n$ '
@@ -57,6 +59,19 @@ alias mysqladmin=/usr/local/mysql/bin/mysqladmin
 
 alias gwstart='git instaweb --httpd=webrick'
 alias gwstop='git instaweb --httpd=webrick --stop'
+
+# Get OS X Software Updates, update Homebrew itself, and upgrade installed Homebrew packages
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade'
+
+# File size
+alias fs="stat -f \"%z bytes\""
+
+# Hide/show all desktop icons (useful when presenting)
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+# URL-encode strings
+alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
 
 # Environment
 
@@ -85,3 +100,4 @@ source $CONFIGS/servers.sh
 
 # Set up rbenv
 eval "$(rbenv init -)"
+
