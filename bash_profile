@@ -31,6 +31,40 @@ function server() {
 
 # Input
 
+# Custom Key Bindings
+## derived from http://stackoverflow.com/questions/994563/integrate-readlines-kill-ring-and-the-x11-clipboard
+
+## You need to choose which clipboard to integrate with, OS X or X11:
+
+shell_copy() {
+    pbcopy # OS X
+}
+shell_yank() {
+    pbpaste
+}
+
+## then wire up readline
+_xdiscard() {
+    echo -n "${READLINE_LINE:0:$READLINE_POINT}" | shell_copy
+    READLINE_LINE="${READLINE_LINE:$READLINE_POINT}"
+    READLINE_POINT=0
+}
+_xkill() {
+    echo -n "${READLINE_LINE:$READLINE_POINT}" | shell_copy
+    READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}"
+}
+_xyank() {
+    CLIP=$(shell_yank)
+    COUNT=$(echo -n "$CLIP" | wc -c)
+    READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}${CLIP}${READLINE_LINE:$READLINE_POINT}"
+    READLINE_POINT=$(($READLINE_POINT + $COUNT))
+}
+
+bind -m emacs -x '"\eu": _xdiscard' # backwards kill from point
+bind -m emacs -x '"\ek": _xkill'
+bind -m emacs -x '"\ey": _xyank'
+
+
 # Immediately add a trailing slash when autocompleting symlinks to directories
 set mark-symlinked-directories on
 

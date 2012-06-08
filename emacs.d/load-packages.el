@@ -1,17 +1,26 @@
-;;; starter-kit-elpa.el --- Install a base set of packages automatically.
-;;
-;; Part of the Emacs Starter Kit
-
 (require 'cl)
 
 (defvar starter-kit-packages (list 'idle-highlight-mode
                                    'ruby-mode
                                    'inf-ruby
-                                   'css-mode
                                    'yaml-mode
+                                   'haskell-mode
+                                   'go-mode
+                                   'php-mode
+                                   'python-mode
+                                   'json
+                                   'jsshell
                                    'find-file-in-project
                                    'magit
-                                   'gist)
+                                   'gist
+                                   'move-text
+                                   'peepopen
+                                   'less-css-mode
+                                   'coffee-mode
+                                   'twittering-mode
+                                   'typing
+                                   'browse-kill-ring
+                                   'auto-complete)
   "Libraries that should be installed by default.")
 
 (defun starter-kit-elpa-install ()
@@ -24,9 +33,7 @@
       (package-install package))))
 
 (defun esk-online? ()
-  "See if we're online.
-
-Windows does not have the network-interface-list function, so we
+  "See if we're online. Windows does not have the network-interface-list function, so we
 just have to assume it's online."
   ;; TODO how could this work on Windows?
   (if (and (functionp 'network-interface-list)
@@ -42,11 +49,4 @@ just have to assume it's online."
   (unless package-archive-contents (package-refresh-contents))
   (starter-kit-elpa-install))
 
-;; Workaround for an ELPA bug that people are reporting but I've been
-;; unable to reproduce:
-(autoload 'paredit-mode "paredit" "" t)
-
-;; Workaround for bug in the ELPA package for yaml-mode
-(autoload 'yaml-mode "yaml-mode" "" t)
-
-(provide 'starter-kit-elpa)
+(provide 'load-packages)
