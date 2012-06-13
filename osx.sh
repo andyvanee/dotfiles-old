@@ -112,3 +112,6 @@ defaults write com.apple.terminal StringEncodings -array 4
 # Kill affected applications
 for app in Finder Dock Mail Safari iTunes iCal Address\ Book SystemUIServer; do killall "$app" > /dev/null 2>&1; done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
+
+# Enable Ctl-u for emacs style repeated commands
+defaults write -g NSRepeatCountBinding -string "^u"

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>	</key>
+	<array>
+		<string>insertText:</string>
+		<string>  </string>
+	</array>
+	<key></key>
+	<string>complete:</string>
+	<key>^</key>
+	<array>
+		<string>breakUndoCoalescing</string>
+		<string>moveToBeginningOfLine:</string>
+		<string>moveWordForwardAndModifySelection:</string>
+		<string>moveWordBackwardAndModifySelection:</string>
+		<string>setMark:</string>
+		<string>deleteToMark:</string>
+		<string>yank:</string>
+		<string>moveToEndOfParagraph:</string>
+		<string>insertNewlineIgnoringFieldEditor:</string>
+		<string>yank:</string>
+	</array>
+	<key>^ </key>
+	<string>setMark:</string>
+	<key>^-</key>
+	<string>undo:</string>
+	<key>^0</key>
+	<string>selectToMark:</string>
+	<key>^X</key>
+	<string>selectAll:</string>
+	<key>^w</key>
+	<string>deleteToMark:</string>
+	<key>~$&lt;</key>
+	<string>moveToBeginningOfDocument:</string>
+	<key>~$&gt;</key>
+	<string>moveToEndOfDocument:</string>
+	<key>~$</key>
+	<string>deleteWordForward:</string>
+	<key>~B</key>
+	<string>moveWordBackwardAndModifySelection:</string>
+	<key>~F</key>
+	<string>moveWordForwardAndModifySelection:</string>
+	<key>~V</key>
+	<string>pageDown:</string>
+	<key>~b</key>
+	<string>moveWordBackward:</string>
+	<key>~f</key>
+	<string>moveWordForward:</string>
+	<key>~p</key>
+	<string>moveUp:</string>
+	<key>~v</key>
+	<string>pageUp:</string>
+	<key>~</key>
+	<string>deleteWordBackward:</string>
+	<key></key>
+	<string>moveToBeginningOfDocument:</string>
+	<key></key>
+	<string>moveToEndOfDocument:</string>
+	<key></key>
+	<string>pageUp:</string>
+	<key></key>
+	<string>pageDown:</string>
+</dict>
+</plist>

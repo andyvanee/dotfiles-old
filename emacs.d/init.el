@@ -35,6 +35,15 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq indent-line-function 'insert-tab)
+;;(setq indent-line-function 'indent-relative)
+(global-set-key
+  (kbd "RET")
+  'newline-and-indent)
+
+;disable backup
+(setq backup-inhibited t)
+;disable auto save
+(setq auto-save-default nil)
 
 ;; enable mouse reporting for terminal emulators
 (unless window-system
