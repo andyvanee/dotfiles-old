@@ -36,12 +36,6 @@
 		<string>{}</string>
 		<string>moveLeft:</string>
 	</array>
-	<key>'</key>
-	<array>
-		<string>insertText:</string>
-		<string>''</string>
-		<string>moveLeft:</string>
-	</array>
 	<key>[</key>
 	<array>
 		<string>insertText:</string>
