@@ -2,17 +2,65 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>	</key>
+	<key>$</key>
+	<array>
+		<string>setMark:</string>
+		<string>moveToBeginningOfParagraph:</string>
+		<string>moveForwardAndModifySelection:</string>
+		<string>moveForwardAndModifySelection:</string>
+		<string>delete:</string>
+		<string>selectToMark:</string>
+		<string>moveRight:</string>
+	</array>
+	<key>$"</key>
 	<array>
 		<string>insertText:</string>
-		<string>  </string>
+		<string>""</string>
+		<string>moveLeft:</string>
 	</array>
-	<key></key>
-	<string>complete:</string>
+	<key>$(</key>
+	<array>
+		<string>insertText:</string>
+		<string>()</string>
+		<string>moveLeft:</string>
+	</array>
+	<key>$&lt;</key>
+	<array>
+		<string>insertText:</string>
+		<string>&lt;&gt;</string>
+		<string>moveLeft:</string>
+	</array>
+	<key>${</key>
+	<array>
+		<string>insertText:</string>
+		<string>{}</string>
+		<string>moveLeft:</string>
+	</array>
+	<key>'</key>
+	<array>
+		<string>insertText:</string>
+		<string>''</string>
+		<string>moveLeft:</string>
+	</array>
+	<key>[</key>
+	<array>
+		<string>insertText:</string>
+		<string>[]</string>
+		<string>moveLeft:</string>
+	</array>
+	<key>^	</key>
+	<array>
+		<string>setMark:</string>
+		<string>moveToBeginningOfParagraph:</string>
+		<string>insertText:</string>
+		<string>  </string>
+		<string>selectToMark:</string>
+		<string>moveRight:</string>
+	</array>
 	<key>^</key>
 	<array>
 		<string>breakUndoCoalescing</string>
-		<string>moveToBeginningOfLine:</string>
+		<string>moveToBeginningOfParagraph:</string>
 		<string>moveWordForwardAndModifySelection:</string>
 		<string>moveWordBackwardAndModifySelection:</string>
 		<string>setMark:</string>
@@ -26,32 +74,122 @@
 	<string>setMark:</string>
 	<key>^-</key>
 	<string>undo:</string>
+	<key>^/</key>
+	<string>complete:</string>
 	<key>^0</key>
 	<string>selectToMark:</string>
-	<key>^X</key>
-	<string>selectAll:</string>
+	<key>^c</key>
+	<dict>
+		<key>/</key>
+		<array>
+			<string>setMark:</string>
+			<string>moveToBeginningOfParagraph:</string>
+			<string>insertText:</string>
+			<string>//</string>
+			<string>selectToMark:</string>
+			<string>moveRight:</string>
+		</array>
+		<key>3</key>
+		<array>
+			<string>setMark:</string>
+			<string>moveToBeginningOfParagraph:</string>
+			<string>insertText:</string>
+			<string>#</string>
+			<string>selectToMark:</string>
+			<string>moveRight:</string>
+		</array>
+		<key>8</key>
+		<array>
+			<string>cut:</string>
+			<string>insertText:</string>
+			<string>/*</string>
+			<string>paste:</string>
+			<string>insertText:</string>
+			<string>*/</string>
+		</array>
+		<key>^l</key>
+		<string>lowercaseWord:</string>
+		<key>^u</key>
+		<string>uppercaseWord:</string>
+	</dict>
+	<key>^l</key>
+	<array>
+		<string>moveBackwardAndModifySelection:</string>
+		<string>centerSelectionInVisibleArea:</string>
+		<string>moveForwardAndModifySelection:</string>
+	</array>
 	<key>^w</key>
 	<string>deleteToMark:</string>
+	<key>^x</key>
+	<dict>
+		<key>^c</key>
+		<string>performClose:</string>
+		<key>^s</key>
+		<string>save:</string>
+		<key>o</key>
+		<string>orderBack:</string>
+		<key></key>
+		<array>
+			<string>moveToBeginningOfParagraphAndModifySelection:</string>
+			<string>cut:</string>
+		</array>
+	</dict>
+	<key>^y</key>
+	<string>yankAndSelect:</string>
+	<key>^</key>
+	<array>
+		<string>moveWordBackwardAndModifySelection:</string>
+		<string>moveWordForwardAndModifySelection:</string>
+		<string>delete:</string>
+	</array>
+	<key>~	</key>
+	<string>checkSpelling:</string>
 	<key>~$&lt;</key>
 	<string>moveToBeginningOfDocument:</string>
 	<key>~$&gt;</key>
 	<string>moveToEndOfDocument:</string>
 	<key>~$</key>
 	<string>deleteWordForward:</string>
+	<key>~,</key>
+	<string>moveToBeginningOfDocument:</string>
+	<key>~.</key>
+	<string>moveToEndOfDocument:</string>
 	<key>~B</key>
 	<string>moveWordBackwardAndModifySelection:</string>
 	<key>~F</key>
-	<string>moveWordForwardAndModifySelection:</string>
+	<string>moveWordForward:</string>
 	<key>~V</key>
 	<string>pageDown:</string>
 	<key>~b</key>
 	<string>moveWordBackward:</string>
+	<key>~c</key>
+	<string>capitalizeWord:</string>
+	<key>~d</key>
+	<string>deleteWordForward:</string>
 	<key>~f</key>
 	<string>moveWordForward:</string>
+	<key>~k</key>
+	<array>
+		<string>moveToEndOfParagraphAndModifySelection:</string>
+		<string>cut:</string>
+	</array>
 	<key>~p</key>
 	<string>moveUp:</string>
+	<key>~t</key>
+	<string>transposeWords:</string>
 	<key>~v</key>
 	<string>pageUp:</string>
+	<key>~w</key>
+	<array>
+		<string>selectToMark:</string>
+		<string>cut:</string>
+		<string>paste:</string>
+	</array>
+	<key>~x</key>
+	<dict>
+		<key>$*</key>
+		<string>noop:</string>
+	</dict>
 	<key>~</key>
 	<string>deleteWordBackward:</string>
 	<key></key>

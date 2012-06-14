@@ -115,3 +115,6 @@ echo "Done. Note that some of these changes require a logout/restart to take eff
 
 # Enable Ctl-u for emacs style repeated commands
 defaults write -g NSRepeatCountBinding -string "^u"
+
+# Set a kill-ring size for multi clipboard
+defaults write -g NSTextKillRingSize -string 6
