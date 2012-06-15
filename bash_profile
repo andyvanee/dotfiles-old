@@ -11,6 +11,11 @@ preg() {
     grep -Rn $1 .
 }
 
+catp(){
+    cat $1 | pbcopy
+    cat $1
+}
+
 # cd + short ls
 cl() {
     [ -n "{$1}" ] && cd $1
@@ -134,4 +139,3 @@ source $CONFIGS/servers.sh
 
 # Set up rbenv
 eval "$(rbenv init -)"
-

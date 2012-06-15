@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Read stdin and display it as a web page
+
+fout=/tmp/web.html
+
+echo "<!DOCTYPE html><html>" > $fout
+echo "<head><title>$@</title></head>" >> $fout
+echo "<body style='font-family:sans-serif;'>" >> $fout
+echo "  <div style='width: 800px; margin: 0 auto'>" >> $fout
+echo "    <h1>"$@"</h1>" >> $fout
+echo "      <pre>" >> $fout
+
+cat | col -b  >> $fout
+
+echo "      </pre>"  >> $fout
+echo "    </div>"  >> $fout
+echo "  </body>" >> $fout
+echo "</html>" >> $fout
+
+open $fout

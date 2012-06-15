@@ -7,3 +7,4 @@ emacs-persistent-scratch-backups
 image-dired
 places
 elpa/*
+tramp

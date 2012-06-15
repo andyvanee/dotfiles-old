@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Man pages in the browser
+fout=/tmp/man.$1.html
+
+echo "<!DOCTYPE html><html>" > $fout
+echo "<head><title>$fout</title></head>" >> $fout
+echo "<body style='background-color: #333; color: #DDD;'>" >> $fout
+echo "<pre style='width: 800px; margin:0 auto;'>" >> $fout
+
+man $1 | col -b >> $fout
+
+echo "</pre></body></html>" >> $fout
+
+open $fout

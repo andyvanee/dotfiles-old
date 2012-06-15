@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Markdown preview in the browser
+fout=/tmp/md.$1.html
+
+echo "<!DOCTYPE html><html>" > $fout
+echo "<head><title>$fout</title></head>" >> $fout
+echo "<body style='background-color:#f4f4f4;color:#333;font-family:sans-serif;'>" >> $fout
+echo "<div style='width:800px;margin:0 auto;'>" >> $fout
+
+Markdown.pl $1 >> $fout
+
+echo "</div></body></html>" >> $fout
+
+open $fout

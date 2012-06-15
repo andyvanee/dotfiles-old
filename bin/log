@@ -1,0 +1,48 @@
+#!/usr/bin/env python
+
+import readline, time, signal, sys, os
+
+delimiter = '-'*40
+logfile = 'logs.txt'
+
+if os.path.exists(logfile):
+  print open(logfile, 'r').read()
+
+print delimiter
+print 'Enter log. To write to file, type "00"'
+print delimiter + '\n'
+
+input = ''
+
+# Appending the buffer to the file
+def writeout():
+  global input
+  global delimiter
+  # Bail on an empty string
+  if input == '':
+    return
+  out = '\n' + delimiter + '\n'
+  out += time.strftime("%Y-%m-%d %H:%M") + '\n'
+  out += delimiter + '\n'
+  print out
+  out += input
+  open(logfile, 'a+').write(out)
+  input = ''
+
+# Catch Ctrl-C and write the current buffer to file
+def signal_handler(signal, frame):
+  writeout()
+  sys.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
+
+# Line capture loop
+while True:
+  try:
+    line = raw_input()
+  except EOFError:
+    print 'test'
+  if (line == '00'):
+    writeout()
+  else:
+    input += line + '\n'
