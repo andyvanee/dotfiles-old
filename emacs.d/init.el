@@ -69,3 +69,32 @@
 				   (scroll-up 1)))
       (defun track-mouse (e))
       (setq mouse-sel-mode t))
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#262622" :foreground "White" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "cousine" :family "Cousine")))))
+
+;;(defun arrange-frame (w h x y)
+;;  "Set the width, height, and x/y position of the current frame"
+;;  (let ((frame (selected-frame)))
+;;    (delete-other-windows)
+;;    (set-frame-position frame x y)
+;;    (set-frame-size frame w h)))
+
+;;(arrange-frame 160 50 2 22)
+
+
+(add-to-list 'load-path "~/.emacs.d/vendor/color-theme")
+(require 'color-theme)
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-initialize)
+     (color-theme-hober)))

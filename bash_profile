@@ -85,13 +85,15 @@ alias ll='ls -lpG'
 alias la='ls -alpG'
 alias l='ls -G'
 
-alias em='emacs'
+alias em='emacsclient -t'
 alias be='bundle exec'
 
 alias gpull='git pull'
 alias gpm='git push -u origin master'
 alias gc='git commit -a'
 alias gstat='git status'
+
+alias t='python ~/Dropbox/a/scripts/t.py --task-dir ~/tasks --list tasks'
 
 alias mysql=/usr/local/mysql/bin/mysql
 alias mysqladmin=/usr/local/mysql/bin/mysqladmin
@@ -114,7 +116,7 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 
 # Environment
 
-export EDITOR=emacs
+export EDITOR=em
 
 export NODE_PATH=/usr/local/lib/node_modules
 
