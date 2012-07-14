@@ -120,7 +120,7 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 
 # Environment
 
-export EDITOR=em
+export EDITOR=mg
 
 export NODE_PATH=/usr/local/lib/node_modules
 
