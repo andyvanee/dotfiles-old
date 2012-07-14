@@ -97,4 +97,5 @@
 (eval-after-load "color-theme"
   '(progn
      (color-theme-initialize)
-     (color-theme-hober)))
+     (load "~/.emacs.d/color-theme-andy.el")
+     (color-theme-andy)))

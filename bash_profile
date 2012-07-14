@@ -88,6 +88,10 @@ alias l='ls -G'
 alias em='emacsclient -t'
 alias be='bundle exec'
 
+function sb(){
+    open "${1:-.}" -a "Sublime Text 2"
+}
+
 alias gpull='git pull'
 alias gpm='git push -u origin master'
 alias gc='git commit -a'
