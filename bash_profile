@@ -1,28 +1,15 @@
 #!/bin/sh
 
-# Bash settings
-export HISTSIZE=5000
-export HISTIGNORE="&:ls:ll:la:exit"
+########################################################################
+# Imports
+########################################################################
 
-# Functions
+CONFIGS=~/Dropbox/a
 
-# grep recursively for the term in the current directory
-preg() {
-    grep -Rn $1 .
-}
+source $CONFIGS/servers.sh      # Server aliases
 
-catp(){
-    cat $1 | pbcopy
-    cat $1
-}
-
-# cd + short ls
-cl() {
-    [ -n "{$1}" ] && cd $1
-    ls -G
-}
-
-# Create a data URL from an image (works for other file types too, if you tweak the Content-Type afterwards)
+# Create a data URL from an image
+# (works for other file types too, if you tweak the Content-Type afterwards)
 dataurl() {
     echo "data:image/${1##*.};base64,$(openssl base64 -in "$1")" | tr -d '\n'
 }
@@ -31,15 +18,13 @@ dataurl() {
 function server() {
     local port="${1:-8000}"
     open "http://localhost:${port}/"
-    python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
+    python -m SimpleHTTPServer $port
 }
 
-# Input
-
+########################################################################
 # Custom Key Bindings
-## derived from http://stackoverflow.com/questions/994563/integrate-readlines-kill-ring-and-the-x11-clipboard
-
-## You need to choose which clipboard to integrate with, OS X or X11:
+########################################################################
+# http://stackoverflow.com/questions/994563/integrate-readlines-kill-ring-and-the-x11-clipboard
 
 shell_copy() {
     pbcopy # OS X
@@ -69,47 +54,76 @@ bind -m emacs -x '"\eu": _xdiscard' # backwards kill from point
 bind -m emacs -x '"\ek": _xkill'
 bind -m emacs -x '"\ey": _xyank'
 
+########################################################################
+# Shell defaults
+########################################################################
 
 # Immediately add a trailing slash when autocompleting symlinks to directories
 set mark-symlinked-directories on
 
-# cwd+newline prompt
+# Colored cwd+newline prompt
 PS1='\n\e[1;31m\w\e[m\n$ '
 
-# cd to some common directories
-alias D='c ~/Desktop'
-alias P='c ~/Projects'
+export EDITOR=mg
+export HISTSIZE=5000
+export HISTIGNORE="&:ls:ll:la:exit"
 
-# Command Shortcuts
+########################################################################
+# Paths
+########################################################################
+
+export NODE_PATH=/usr/local/lib/node_modules
+
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
+export PATH=$HOME/bin:$PATH
+export PATH=$HOME/Dropbox/a/scripts:$PATH
+
+########################################################################
+# Shortened Commands
+########################################################################
+
+# File & Folder interactions
+
+# cd and short list
+cl() {
+    [ -n "{$1}" ] && cd $1
+    ls -G
+}
+
 alias ll='ls -lpG'
 alias la='ls -alpG'
 alias l='ls -G'
+# cd to some common directories
+alias D='cl ~/Desktop'
+alias P='cl ~/Projects'
+alias fs="stat -f \"%z bytes\""
 
-alias em='emacsclient -t'
-alias be='bundle exec'
+# function subl(){
+#     open "${1:-.}" -a "Sublime Text 2"
+# }
 
-function sb(){
-    open "${1:-.}" -a "Sublime Text 2"
+function e(){
+    open "${1:-.}" -a "/Applications/TextEdit.app"
 }
 
-alias gpull='git pull'
-alias gpm='git push -u origin master'
+# Git shortcuts
+alias gpul='git pull'
+alias gpsh='git push -u origin master'
 alias gc='git commit -a'
-alias gstat='git status'
+alias gst='git status'
 
+# Applications
 alias t='python ~/Dropbox/a/scripts/t.py --task-dir ~/tasks --list tasks'
-
-alias mysql=/usr/local/mysql/bin/mysql
-alias mysqladmin=/usr/local/mysql/bin/mysqladmin
 
 alias gwstart='git instaweb --httpd=webrick'
 alias gwstop='git instaweb --httpd=webrick --stop'
 
+# Package Management and Environment
+alias be='bundle exec'
+
 # Get OS X Software Updates, update Homebrew itself, and upgrade installed Homebrew packages
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade'
-
-# File size
-alias fs="stat -f \"%z bytes\""
 
 # Hide/show all desktop icons (useful when presenting)
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
@@ -118,30 +132,6 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
 
-# Environment
-
-export EDITOR=mg
-
-export NODE_PATH=/usr/local/lib/node_modules
-
-export PATH=\
-$HOME/local/node/bin:\
-/usr/local/bin:\
-/usr/local/sbin:\
-$HOME/bin:\
-$HOME/src/go/bin:\
-$HOME/local/bin:\
-$HOME/src/google_appengine:\
-$HOME/Library/Haskell/bin:\
-$HOME/Dropbox/a/scripts:\
-$HOME/.rbenv/bin:\
-$PATH
-
 # Run on startup
-
-# Set up my server aliases
-CONFIGS=~/Dropbox/a
-source $CONFIGS/servers.sh
-
 # Set up rbenv
 eval "$(rbenv init -)"
