@@ -78,6 +78,7 @@ export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/Dropbox/a/scripts:$PATH
+export PATH=$HOME/.rbenv/bin:$PATH
 
 ########################################################################
 # Shortened Commands
